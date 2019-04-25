@@ -4,13 +4,13 @@ class LinkedList
   attr_reader :head,
                     :next_node,
                     :count,
-                    :string
+                    :to_string
 
   def initialize
     @head = nil
     @next_node = nil
     @count = 0
-    @string = ''
+    @to_string = ''
   end
 
   def append(data)
@@ -20,7 +20,7 @@ class LinkedList
       @head = Node.new(data)
     end
     @count +=1
-    @string << data
+    @to_string << (data + ' ')
   end
 
   def find_tail
