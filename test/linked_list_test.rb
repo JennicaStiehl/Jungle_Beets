@@ -30,4 +30,13 @@ class LinkedListTest < Minitest::Test
 
     assert_equal 2, list.count
   end
+
+  def test_it_can_make_a_string_with_data
+    list = LinkedList.new
+    list.append("doop") #"doop"
+    list.append("op") #"doop"
+
+    assert_equal "doopop", list.string
+  end
+
 end
