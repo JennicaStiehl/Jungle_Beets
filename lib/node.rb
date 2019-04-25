@@ -6,7 +6,7 @@ class Node
   end
 
   def next_node
-    
+
   end
 
 end
