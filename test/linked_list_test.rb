@@ -36,42 +36,71 @@ class LinkedListTest < Minitest::Test
     list.append("doop") #"doop"
     list.append("deep") #"doop"
 
-    assert_equal "doop deep ", list.to_string
+    assert_equal "doop, deep", list.to_string
   end
 
-  def test_it_can_prepend
+  def test_it_can_prepend_and_count
     list = LinkedList.new
     list.append("plop")
     list.to_string #"plop"
     list.append("suu") #"suu"
     list.prepend("dop") #"dop"
-    assert_equal "dop plop suu", list.to_string
+
     assert_equal 3, list.count #3
   end
 
-#   def test_it_can_insert
-#     > list.insert(1, "woo")
-# => "woo"
-# list.to_string
-# => "dop woo plop suu"
+  def test_it_can_create_string_after_prepend
+    list = LinkedList.new
+    list.append("plop")
+    list.to_string #"plop"
+    list.append("suu") #"suu"
+    list.prepend("dop") #"dop"
+    assert_equal "dop, plop, suu", list.to_string
+  end
 
-#   def test_it_can_pop
-#     > list.to_string
-# => "deep woo shi shu blop"
-# > list.find(2, 1)
-# => "shi"
-# > list.find(1, 3)
-# => "woo shi shu"
-# > list.includes?("deep")
-# => true
-# > list.includes?("dep")
-# => false
-# > list.pop
-# => "blop"
-# > list.pop
-# => "shu"
-# > list.to_string
-# => "deep woo shi"
-#   end
+  def test_it_can_insert
+    list = LinkedList.new
+    list.append("plop")
+    list.append("suu") #"suu"
+    list.prepend("dop") #"dop"
+    list.insert(1, "woo")
+    assert_equal "dop, woo, plop, suu", list.to_string
+  end
+
+  def test_it_can_find_elements
+    list = LinkedList.new
+    list.append("woo")
+    list.append("shi")
+    list.append("shu")
+    list.append("blop")
+
+    assert_equal "woo, shi, shu, blop", list.to_string
+    assert_equal "woo, shi", list.find(0, 2) #"shi"
+    assert_equal "woo, shi, shu", list.find(0, 3) #"woo shi shu"
+  end
+
+  def test_it_can_determine_if_an_element_is_included
+    list = LinkedList.new
+    list.append("deep")
+    list.append("woo")
+    list.append("shi")
+    list.append("shu")
+    list.append("blop")
+
+    assert_equal true, list.includes?("deep") #true
+    assert_equal false, list.includes?("dep") #false
+  end
+
+  def test_it_can_pop_elements
+    list = LinkedList.new
+    list.append("deep")
+    list.append("woo")
+    list.append("shi")
+    list.append("shu")
+    list.append("blop")
+    list.pop #"blop"
+    list.pop #"shu"
+    assert_equal "deep, woo, shi", list.to_string
+  end
 
 end
